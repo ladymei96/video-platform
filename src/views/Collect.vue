@@ -7,11 +7,11 @@
           <div class="card h-100 border-0">
             <img :src="video.snippet.thumbnails.high.url" class="card-img-top" alt="videoImage"
             @click="playVideo(video.contentDetails.videoId)">
-            <div class="card-body text-right">
-              <h5 class="card-title text-left">{{ video.snippet.title.substr(0, 25) }} ...</h5>
-              <button type="button" class="btn btn-sm btn-danger"
-              @click="removeCollect(video.contentDetails.videoId)">收藏項目</button>
+            <div class="card-body">
+              <h5 class="card-title">{{ video.snippet.title.substr(0, 25) }} ...</h5>
             </div>
+            <button type="button" class="btn btn-sm btn-danger align-self-end"
+            @click="removeCollect(video.contentDetails.videoId)">收藏項目</button>
           </div>
         </div>
       </div>

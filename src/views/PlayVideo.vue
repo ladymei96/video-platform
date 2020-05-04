@@ -4,8 +4,8 @@
       <div class="row no-gutters">
         <div class="col-12 text-center">
           <iframe class="videoWrap" :src="`https://www.youtube.com/embed/${videoId}`" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          <h2>{{ videoItem.snippet.title }}</h2>
-          <span>
+          <h2 v-if="videoItem.snippet">{{ videoItem.snippet.title }}</h2>
+          <span v-if="videoItem.snippet">
             首播日期：{{ publishedAt.year }}月{{ publishedAt.month }}月{{ publishedAt.date }}日
           </span>
           <button type="button" class="btn" :class="isSub" @click="judgeItem">
@@ -24,7 +24,6 @@ export default {
   data() {
     return {
       videoId: '',
-      // isSub: false,
       collectItemId: JSON.parse(localStorage.getItem('CollectItemId')) || [],
     };
   },

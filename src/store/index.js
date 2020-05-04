@@ -25,7 +25,7 @@ export default new Vuex.Store({
     // 把資料取回來-1.取得頻道上傳id 2.取得頻道影片清單 3.取得50部影片
     getPlayListItems(context) {
       context.commit('LOADING', true);
-      const channelPlaylistUrl = `${process.env.VUE_APP_URL}channels?part=contentDetails&id=UCj_z-Zeqk8LfwVxx0MUdL-Q&key=${process.env.VUE_APP_API}`;
+      const channelPlaylistUrl = `${process.env.VUE_APP_URL}channels?part=contentDetails&id=UC27M3BS9uxhJfPjYYys7y8w&key=${process.env.VUE_APP_API}`;
       axios.get(channelPlaylistUrl).then((res) => {
         // eslint-disable-next-line prefer-destructuring
         const uploads = res.data.items[0].contentDetails.relatedPlaylists.uploads;
