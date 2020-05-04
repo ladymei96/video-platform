@@ -3,6 +3,7 @@
     <Navbar/>
     <router-view class="main p-4"/>
     <Footer/>
+    <loading :active.sync="isLoading"></loading>
   </div>
 </template>
 
@@ -15,6 +16,11 @@ export default {
   components: {
     Navbar,
     Footer,
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
   mounted() {
     this.$store.dispatch('getPlayListItems');

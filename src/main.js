@@ -2,7 +2,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import Loading from 'vue-loading-overlay';
-// import 'vue-loading/dist/vue-loading.min.css';
+import 'vue-loading-overlay/dist/vue-loading.css';
 import 'bootstrap';
 import App from './App.vue';
 import router from './router';
