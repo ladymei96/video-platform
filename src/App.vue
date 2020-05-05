@@ -22,9 +22,6 @@ export default {
       return this.$store.state.isLoading;
     },
   },
-  mounted() {
-    this.$store.dispatch('getPlayListItems');
-  },
 };
 
 </script>

@@ -4,10 +4,10 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-4 col-sm-6 item mb-3"
-        v-for="video in videoItems" :key="video.id" ref="videoEl">
+        v-for="video in videoItems" :key="video.id">
           <div class="card h-100 border-0 cover" ref="cardItem">
             <img :src="video.snippet.thumbnails.high.url" class="card-img-top" alt="videoImage"
-            @click="playVideo(video.contentDetails.videoId)">
+            @click="playVideo(video.contentDetails.videoId)" :class="{imgInitHeight:imgInitHeight}">
             <div class="card-body">
               <h5 class="card-title">{{ video.snippet.title.substr(0, 25) }} ...</h5>
             </div>
@@ -23,7 +23,7 @@ export default {
   name: 'Home',
   data() {
     return {
-
+      imgInitHeight: true,
     };
   },
   computed: {
@@ -35,13 +35,17 @@ export default {
     playVideo(id) {
       this.$router.push(`/play-video/${id}`);
     },
-    scrollHandler() {
+    scrollHandler(num) {
+      // 初始預設高度，網頁觸發滾動事件，height改為auto
+      if (num !== 1) {
+        this.imgInitHeight = false;
+      }
       // eslint-disable-next-line prefer-const
       let windowTop = window.scrollY;
       // eslint-disable-next-line prefer-const
       let windowBottom = windowTop + window.innerHeight;
       this.$refs.cardItem.forEach((item) => {
-      // eslint-disable-next-line max-len
+        // eslint-disable-next-line max-len
         const elMiddle = item.getBoundingClientRect().top + windowTop + item.getBoundingClientRect().height / 2;
         if (windowBottom > elMiddle) {
           item.classList.remove('cover');
@@ -54,7 +58,10 @@ export default {
     window.addEventListener('scroll', this.scrollHandler);
   },
   updated() {
-    this.scrollHandler();
+    this.scrollHandler(1);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.scrollHandler);
   },
 };
 </script>
